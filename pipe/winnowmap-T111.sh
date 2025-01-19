@@ -5,13 +5,18 @@ readID=$3
 preset=map-ont #map-pb, map-ont
 ############################################################################################
 
-if [ -z ${readID} ]; then
-    echo "readID is empty."
+if [ -z ${threadN} ]; then
+    echo "threadN is empty."
     exit 1
 fi
 
-if [ -z ${threadN} ]; then
-    echo "threadN is empty."
+if [ -z ${readDir} ]; then
+    echo "readDir is empty."
+    exit 1
+fi
+
+if [ -z ${readID} ]; then
+    echo "readID is empty."
     exit 1
 fi
 

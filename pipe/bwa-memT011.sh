@@ -4,13 +4,18 @@ readDir=$2
 readID=$3
 ############################################################################################
 
-if [ -z ${readID} ]; then
-    echo "readID is empty."
+if [ -z ${threadN} ]; then
+    echo "threadN is empty."
     exit 1
 fi
 
-if [ -z ${threadN} ]; then
-    echo "threadN is empty."
+if [ -z ${readDir} ]; then
+    echo "readDir is empty."
+    exit 1
+fi
+
+if [ -z ${readID} ]; then
+    echo "readID is empty."
     exit 1
 fi
 
