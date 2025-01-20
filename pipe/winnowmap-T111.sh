@@ -22,7 +22,7 @@ if [ -z ${readID} ]; then
 fi
 
 #create head before
-cat db/ref.fa.fai | awk 'BEGIN {FS="\t"; OFS="\t"} {print "@SQ\tSN:"$1"\tLN:"$2}' > result/${readID}.winnowmap-T01.sam
+cat db/ref.fa.fai | awk 'BEGIN {FS="\t"; OFS="\t"} {print "@SQ\tSN:"$1"\tLN:"$2}' > result/${readID}.winnowmap-T111.sam
 
 winnowmap \
     -t ${threadN} \
