@@ -16,5 +16,5 @@ fi
 samtools index \
     --threads ${threadN} \
     -c  result/${readID}.sorted.bam \
-    1>  result/${readID}.RGsorted.bam.csi.log \
-    2>  result/${readID}.RGsorted.bam.csi.err
+    1>  result/${readID}.sorted.bam.csi.log \
+    2>  result/${readID}.sorted.bam.csi.err
