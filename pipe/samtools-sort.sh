@@ -21,9 +21,9 @@ fi
 
 samtools sort \
     --threads ${threadN} \
-    -o  result/${readID}.sorted.bam \
-    result/${readID}.${fileExt} \
-    1 > result/${readID}.sorted.bam.log \
-    2 > result/${readID}.sorted.bam.err
+    -o result/${readID}.sorted.bam \
+       result/${readID}.${fileExt} \
+    1> result/${readID}.sorted.bam.log \
+    2> result/${readID}.sorted.bam.err
 
 bash pipe/samtools-index.sh ${threadN} ${readID}.sorted
