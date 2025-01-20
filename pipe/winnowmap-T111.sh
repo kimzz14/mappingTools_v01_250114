@@ -1,4 +1,5 @@
 ############################################################################################
+#NextPolish2
 threadN=$1
 readDir=$2
 readID=$3
@@ -23,7 +24,12 @@ fi
 #create head before
 cat db/ref.fa.fai | awk 'BEGIN {FS="\t"; OFS="\t"} {print "@SQ\tSN:"$1"\tLN:"$2}' > result/${readID}.winnowmap-T01.sam
 
-winnowmap -t ${threadN} -W db/winnowmapDB/repetitive_k15.txt -ax ${preset} db/ref.fa ${readDir}/${readID}.fastq.gz \
+winnowmap \
+    -t ${threadN} \
+    -W db/winnowmapDB/repetitive_k15.txt \
+    -ax ${preset} \
+    db/ref.fa \
+    ${readDir}/${readID}.fastq.gz \
     2> result/${readID}.winnowmap-T111.sam.log \
     >> result/${readID}.winnowmap-T111.sam
 

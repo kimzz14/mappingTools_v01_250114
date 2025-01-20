@@ -1,9 +1,9 @@
 ############################################################################################
-#NextPolish2
+#Iso-Seq
 threadN=$1
 readDir=$2
 readID=$3
-preset=map-ont #map-pb, map-ont
+preset=splice #map-pb, map-ont
 ############################################################################################
 
 if [ -z ${threadN} ]; then
@@ -26,13 +26,16 @@ cat db/ref.fa.fai | awk 'BEGIN {FS="\t"; OFS="\t"} {print "@SQ\tSN:"$1"\tLN:"$2}
 
 minimap2 \
     -t ${threadN} \
-    -ax ${preset} \
+    -ax splice \
+    -u f \
+    --secondary=no \
+    -C 5 \
     db/ref.fa \
     ${readDir}/${readID}.fastq.gz \
-    2>  result/${readID}.minimap2-T111.sam.log \
-    >>  result/${readID}.minimap2-T111.sam
+    2>  result/${readID}.minimap2-T112.sam.log \
+    >>  result/${readID}.minimap2-T112.sam
 
-bash pipe/samtools-sort.sh ${threadN} ${readID}.minimap2-T111 sam
+bash pipe/samtools-sort.sh ${threadN} ${readID}.minimap2-T112 sam
 
 ############################################################################################
 #Preset:
@@ -44,3 +47,9 @@ bash pipe/samtools-sort.sh ${threadN} ${readID}.minimap2-T111 sam
 #                 - asm5/asm10/asm20 - asm-to-ref mapping
 # or mapping using minimap2
 # 
+#-C INT	Cost for a non-canonical GT-AG splicing (effective with --splice) [0]
+#
+#--secondary=yes|no
+# 	Whether to output secondary alignments [yes]
+#
+#-u CHAR	How to find canonical splicing sites GT-AG - f: transcript strand; b: both strands; n: no attempt to match GT-AG [n]
