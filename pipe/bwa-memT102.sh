@@ -20,14 +20,13 @@ if [ -z ${readID} ]; then
 fi
 
 bwa mem \
-    -5SP \
-    -T0 \
+    -a \
     -t ${threadN} \
+    -x pacbio \
     db/bwaDB/ref.fa \
-    ${readDir}/${readID}_1.fastq.gz \
-    ${readDir}/${readID}_2.fastq.gz \
-    2>  result/${readID}.bwa-memT002.log \
+    ${readDir}/${readID}.fastq.gz \
+    2>  result/${readID}.bwa-memT102.bam.log \
     | samtools view -bS \
-    -o  result/${readID}.bwa-memT002.bam
+    -o  result/${readID}.bwa-memT102.bam
 
-bash pipe/samtools-flagstat.sh ${threadN} ${readID}.bwa-memT002 bam
+bash pipe/samtools-flagstat.sh ${threadN} ${readID}.bwa-memT102 bam
