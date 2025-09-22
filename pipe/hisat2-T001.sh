@@ -5,7 +5,7 @@ readID=$3
 ############################################################################################
 
 hisat2 \
-    --summary-file \
+    --summary-file result/${readID}.hisat2-T001.summary.txt \
     --dta \
     -x db/hisat2DB/ref \
     -1 ${readDir}/${readID}_1.fastq.gz \
