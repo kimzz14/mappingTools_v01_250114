@@ -4,9 +4,25 @@ readDir=$2
 readID=$3
 ############################################################################################
 
+if [ -z ${threadN} ]; then
+    echo "threadN is empty."
+    exit 1
+fi
+
+if [ -z ${readDir} ]; then
+    echo "readDir is empty."
+    exit 1
+fi
+
+if [ -z ${readID} ]; then
+    echo "readID is empty."
+    exit 1
+fi
+
 hisat2 \
     --summary-file result/${readID}.hisat2-T001.summary.txt \
     --dta \
+    --threads ${threadN} \
     -x db/hisat2DB/ref \
     -1 ${readDir}/${readID}_1.fastq.gz \
     -2 ${readDir}/${readID}_2.fastq.gz \
