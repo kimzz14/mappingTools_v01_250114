@@ -31,6 +31,7 @@ minimap2 \
     | samtools view -bS \
     -o  result/${readID}.minimap2-T113.bam
 
+bash pipe/samtools-flagstat.sh ${threadN} ${readID}.minimap2-T113 bam
 
 #create head before
 #cat db/ref.fa.fai | awk 'BEGIN {FS="\t"; OFS="\t"} {print "@SQ\tSN:"$1"\tLN:"$2}' > result/${readID}.minimap2-T113.sam
