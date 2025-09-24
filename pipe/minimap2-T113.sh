@@ -20,20 +20,25 @@ if [ -z ${readID} ]; then
     exit 1
 fi
 
-#create head before
-cat db/ref.fa.fai | awk 'BEGIN {FS="\t"; OFS="\t"} {print "@SQ\tSN:"$1"\tLN:"$2}' > result/${readID}.minimap2-T113.sam
-
 minimap2 \
     -t ${threadN} \
     -ax splice \
     -uf \
     -k14 \
-    db/ref.fa \
+    db/minimap2DB/ref.mmi \
     ${readDir}/${readID}.fastq.gz \
-    2>  result/${readID}.minimap2-T113.sam.log \
-    >>  result/${readID}.minimap2-T113.sam
+    2>  result/${readID}.minimap2-T113.bam.log \
+    | samtools view -bS \
+    -o  result/${readID}.minimap2-T113.bam
 
-bash pipe/samtools-sort.sh ${threadN} ${readID}.minimap2-T113 sam
+
+#create head before
+#cat db/ref.fa.fai | awk 'BEGIN {FS="\t"; OFS="\t"} {print "@SQ\tSN:"$1"\tLN:"$2}' > result/${readID}.minimap2-T113.sam
+
+
+#    >>  result/${readID}.minimap2-T113.sam
+
+#bash pipe/samtools-sort.sh ${threadN} ${readID}.minimap2-T113 sam
 
 ############################################################################################
 #Preset:
